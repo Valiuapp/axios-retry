@@ -43,13 +43,20 @@ declare namespace IAxiosRetry {
      *
      * @type {Function}
      */
-    retryCondition?: (error: axios.AxiosError) => boolean,
+    retryCondition?: (error: axios.AxiosError, context?: any) => Promise<boolean | unknown>,
     /**
      * A callback to further control the delay between retry requests. By default there is no delay.
      *
      * @type {Function}
      */
     retryDelay?: (retryCount: number, error: axios.AxiosError) => number
+
+    /**
+     * Context object passed as second argument to retryCondition
+     *
+     * @type {Object}
+     */
+    context?: any
   }
 }
 
